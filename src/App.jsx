@@ -2,7 +2,7 @@ import { useState } from "react";
 
 // Full driving-side dataset based on your map image
 const countryData = {
-  // Left-side drivers (blue on your map)
+  // Left-side drivers...
   "United Kingdom": "left",
   "Ireland": "left",
   "Australia": "left",
@@ -36,7 +36,7 @@ const countryData = {
   "Samoa": "left",
   "Suriname": "left",
 
-  // Right-side drivers (red on your map)
+  // Right-side drivers...
   "United States": "right",
   "Canada": "right",
   "Mexico": "right",
@@ -152,57 +152,69 @@ export default function App() {
   return (
     <div
       style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+        fontFamily: "sans-serif",
+        backgroundColor: "#111",
+        color: "white",
+        textAlign: "center",
+      }}
+    >
+    <div 
+      style={{
         maxWidth: 500,
-        margin: "40px auto",
         padding: 20,
         fontFamily: "sans-serif",
         textAlign: "center",
       }}
     >
-      <h1>🚗 Driving Side Quiz</h1>
-      {!gameOver ? (
-        <>
-          <h2>Round {round} of {totalRounds}</h2>
-          <p>Which side of the road does <strong>{currentCountry}</strong> drive on?</p>
-          <form onSubmit={handleSubmit} style={{ marginTop: 20 }}>
-            <input
-              type="text"
-              placeholder="left or right"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              required
-              style={{ padding: "10px", fontSize: "16px", width: "60%" }}
-            />
-            <br /><br />
+        <h1>🚗 Driving Side Quiz</h1>
+        {!gameOver ? (
+          <>
+            <h2>Round {round} of {totalRounds}</h2>
+            <p>Which side of the road does <strong>{currentCountry}</strong> drive on?</p>
+            <form onSubmit={handleSubmit} style={{ marginTop: 20 }}>
+              <input
+                type="text"
+                placeholder="left or right"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                required
+                style={{ padding: "10px", fontSize: "16px", width: "60%" }}
+              />
+              <br /><br />
+              <button
+                type="submit"
+                style={{ padding: "10px 20px", fontSize: "16px" }}
+              >
+                Submit
+              </button>
+            </form>
+          </>
+        ) : (
+          <>
+            <h2>{feedback}</h2>
             <button
-              type="submit"
-              style={{ padding: "10px 20px", fontSize: "16px" }}
+              onClick={handleRestart}
+              style={{
+                marginTop: 20,
+                padding: "10px 20px",
+                fontSize: "16px",
+                backgroundColor: "#0070f3",
+                color: "white",
+                border: "none",
+                borderRadius: 6,
+                cursor: "pointer",
+              }}
             >
-              Submit
+              🔁 Play Again
             </button>
-          </form>
-        </>
-      ) : (
-        <>
-          <h2>{feedback}</h2>
-          <button
-            onClick={handleRestart}
-            style={{
-              marginTop: 20,
-              padding: "10px 20px",
-              fontSize: "16px",
-              backgroundColor: "#0070f3",
-              color: "white",
-              border: "none",
-              borderRadius: 6,
-              cursor: "pointer",
-            }}
-          >
-            🔁 Play Again
-          </button>
-        </>
-      )}
-      <p style={{ marginTop: 20, fontSize: "18px" }}>{!gameOver && feedback}</p>
+          </>
+        )}
+        <p style={{ marginTop: 20, fontSize: "18px" }}>{!gameOver && feedback}</p>
+      </div>
     </div>
   );
 }
