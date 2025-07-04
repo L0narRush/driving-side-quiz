@@ -1,18 +1,96 @@
 import { useState } from "react";
 
+// Full driving-side dataset based on your map image
 const countryData = {
+  // Left-side drivers (blue on your map)
   "United Kingdom": "left",
-  "United States": "right",
-  "Japan": "left",
-  "Germany": "right",
-  "India": "left",
-  "France": "right",
+  "Ireland": "left",
   "Australia": "left",
-  "Canada": "right",
   "New Zealand": "left",
+  "Japan": "left",
+  "India": "left",
+  "Pakistan": "left",
+  "Bangladesh": "left",
+  "Indonesia": "left",
+  "Malaysia": "left",
+  "Singapore": "left",
+  "Thailand": "left",
   "South Africa": "left",
+  "Kenya": "left",
+  "Uganda": "left",
+  "Tanzania": "left",
+  "Malta": "left",
+  "Cyprus": "left",
+  "Hong Kong": "left",
+  "Macau": "left",
+  "Sri Lanka": "left",
+  "Nepal": "left",
+  "Mozambique": "left",
+  "Zambia": "left",
+  "Zimbabwe": "left",
+  "Botswana": "left",
+  "Namibia": "left",
+  "Lesotho": "left",
+  "Swaziland": "left",
+  "Brunei": "left",
+  "Samoa": "left",
+  "Suriname": "left",
+
+  // Right-side drivers (red on your map)
+  "United States": "right",
+  "Canada": "right",
+  "Mexico": "right",
   "Brazil": "right",
+  "Argentina": "right",
+  "Chile": "right",
+  "Peru": "right",
+  "Colombia": "right",
+  "Venezuela": "right",
+  "Ecuador": "right",
+  "Bolivia": "right",
+  "Paraguay": "right",
+  "Uruguay": "right",
+  "France": "right",
+  "Germany": "right",
+  "Italy": "right",
+  "Spain": "right",
+  "Portugal": "right",
+  "Belgium": "right",
+  "Netherlands": "right",
+  "Switzerland": "right",
+  "Austria": "right",
+  "Poland": "right",
+  "Czech Republic": "right",
+  "Slovakia": "right",
+  "Hungary": "right",
+  "Romania": "right",
+  "Bulgaria": "right",
+  "Greece": "right",
+  "Turkey": "right",
+  "Russia": "right",
+  "Ukraine": "right",
+  "Norway": "right",
   "Sweden": "right",
+  "Finland": "right",
+  "Denmark": "right",
+  "China": "right",
+  "South Korea": "right",
+  "North Korea": "right",
+  "Vietnam": "right",
+  "Laos": "right",
+  "Cambodia": "right",
+  "Philippines": "right",
+  "Saudi Arabia": "right",
+  "Iran": "right",
+  "Iraq": "right",
+  "Israel": "right",
+  "Egypt": "right",
+  "Morocco": "right",
+  "Algeria": "right",
+  "Tunisia": "right",
+  "Ethiopia": "right",
+  "Nigeria": "right",
+  "Ghana": "right"
 };
 
 export default function App() {
@@ -26,7 +104,9 @@ export default function App() {
   const [gameOver, setGameOver] = useState(false);
 
   function getNextCountry(used) {
-    const available = Object.keys(countryData).filter((c) => !used.includes(c));
+    const allCountries = Object.keys(countryData);
+    const available = allCountries.filter((c) => !used.includes(c));
+    if (available.length === 0) return null;
     return available[Math.floor(Math.random() * available.length)];
   }
 
